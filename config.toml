@@ -1,0 +1,52 @@
+# ---------------------------------------------------------------
+# SETTINGS  -  edit this file, then run one of the scripts.
+# Keep the quotes around text values. Lines starting with # are notes.
+# ---------------------------------------------------------------
+
+# --- Connection to Unsloth ---
+# Unsloth prints the address when a model loads.
+# Leave api_key empty ("") if your setup does not need a key.
+base_url = "http://localhost:8888/v1"
+api_key  = ""
+model    = "default"
+
+# --- Files ---
+system_prompt_file = "system_prompt.txt"
+output_file        = "results.csv"
+
+# --- Demo runs ---
+# How many rows (or images) to run. Use a small number like 3 for a quick test.
+# Use 0 to run everything.
+max_rows = 0
+
+# --- Used by run_text.py ---
+# Every column of each row is sent to the model, like this:
+#     id: 1
+#     prompt: What is the capital of France?
+input_file = "inputs.csv"   # your CSV file of inputs
+
+# --- Used by run_images.py ---
+image_folder = "images"                 # folder holding your images
+image_prompt = "Describe this image."   # the question sent with every image
+
+# --- Frozen hyperparameters ---
+# Everything in this section is sent to the model exactly as written.
+# Keep these the same for every run of your experiment.
+[parameters]
+temperature        = 1.0
+top_p              = 0.95
+top_k              = 20
+min_p              = 0.0
+presence_penalty   = 1.5
+repetition_penalty = 1.0
+max_tokens         = 8192
+seed               = 42
+
+# Thinking mode: true = the model thinks before it answers, false = it answers directly.
+# Only has an effect on models that support thinking.
+enable_thinking    = true
+
+# Thinking level: only some models have levels (most just use true/false above).
+# To use it, remove the # at the start of the next line and pick a level.
+# Allowed: "none", "minimal", "low", "medium", "high", "max", "xhigh"
+# reasoning_effort = "medium"
