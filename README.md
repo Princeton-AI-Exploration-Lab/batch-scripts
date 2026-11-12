@@ -34,6 +34,20 @@ Steps
        python run_images.py
 8. Open results.csv in Excel or Google Sheets.
 
+If an answer is missing
+-----------------------
+Every run adds to run_log.txt. It records each request, how long it took,
+and the model's full reply, including errors. Open it in any text editor
+and find the row with the missing answer. Then look in the reply for:
+- "finish_reason": "length"   The model ran out of tokens, often because
+                              it spent them all on thinking. Raise
+                              max_tokens or turn thinking off.
+- "content": "" or null       The model sent thinking but no answer.
+- ERROR ... timed out         The model took over 10 minutes.
+- HTTP Error 422              Unsloth rejected a setting in config.toml.
+                              The log says which one.
+The log keeps growing. You can delete it at any time.
+
 Good to know
 ------------
 - results.csv has a "response" column (the answer) and a "thinking" column
